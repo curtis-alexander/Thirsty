@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    render json: @users.as_json
   end
 
   def show
-    @user = User.find(params [:id])
+    @user = User.find(params[:id])
+    render json: @user.as_json
   end
 end
