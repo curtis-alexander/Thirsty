@@ -18,7 +18,22 @@ class UsersController < ApplicationController
       gender: params[:gender],
     )
     if user.save
-      render json: user
+      render json: user.as_json
+    else
+      render json: { error: user.errors.full_messages }
+    end
+  end
+
+  def edit
+    user = User.find(params[:id])
+    user.name = params[:name] || user.name
+    user.height = params[:height] || user.height
+    user.weight = params[:weight] || user.weight
+    user.age = params[:age] || user.age
+    user.gender = params[:gender] || user.gender
+
+    if user.save
+      render json: user.as_json
     else
       render json: { error: user.errors.full_messages }
     end
