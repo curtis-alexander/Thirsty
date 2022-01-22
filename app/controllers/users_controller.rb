@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
+  def update
     user = User.find(params[:id])
     user.name = params[:name] || user.name
     user.height = params[:height] || user.height
